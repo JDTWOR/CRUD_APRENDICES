@@ -1,31 +1,38 @@
 <?php
-include 'database/conexion.php';
+require_once 'database/db.php';
 class Usuario {
-    public $conexion;
+    private PDO $conn;
 
     public function __construct(){
-        $this->conexion = Conexion::conectar();
+
+        $this->conn = (new Conexion())->conectar();
+
     }
     public function crear_usuario($nombre) {
         $sql = "INSERT INTO usuarios (nombre) VALUES (:nombre)";
-        $stmt = $this->conexion->prepare($sql);
+        $stmt = $this->conn->prepare($sql);
         $stmt->bindParam(':nombre', $nombre);
         return $stmt->execute();
     }
     public function obtener_usuarios() {
         $sql = "SELECT * FROM usuarios";
-        $stmt = $this->conexion->query($sql);
+        $stmt = $this->conn->query($sql);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+    public function obtener_usuario($id) {
+        $sql = "SELECT * FROM usuarios WHERE id = $id";
+        $stmt = $this->conn->query($sql);
+        return $stmt->fetch();
+    }
     public function editar_usuario($id, $nombre) {
-        $sql = "ALTER TABLE usuarios WHERE $";
-        $stmt = $this->conexion->query($sql);
+        $sql = "ALTER TABLE usuarios WHERE $id";
+        $stmt = $this->conn->query($sql);
         $stmt->bindParam(':nombre', $nombre);
         return $stmt->execute();
     }
     public function eliminar_usuario($id) {
-        $sql = "SELECT * FROM usuarios";
-        $stmt = $this->conexion->query($sql);
+        $sql = "DELETE FROM usuarios WHERE id=$id";
+        $stmt = $this->conn->query($sql);
         return $stmt->execute();
     }
 }
