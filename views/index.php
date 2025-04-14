@@ -35,7 +35,7 @@
                             $contador = 1;
                             foreach ($usuarios as $row) {
                                 $id = $row['id'];
-                                $nombre = $row['primer_nombre'];
+                                $nombre = $row['nombre_completo'];
                                 $fecha_nacimiento = $row['fecha_nacimiento'];
                                 $obj = new DateTime($fecha_nacimiento);
                                 $hoy = new DateTime();

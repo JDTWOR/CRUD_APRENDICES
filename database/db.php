@@ -1,7 +1,7 @@
 <?php
 class Conexion{
     private string $host = 'localhost';
-    private string $db = 'usuarios_app';
+    private string $db = 'db_aprendices';
     private string $user = 'root';
     private string $pass = '';
     private PDO $conexion;

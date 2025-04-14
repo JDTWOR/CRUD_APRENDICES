@@ -10,12 +10,12 @@
 
 <body>
     <?php
-    require_once  'views/index.php';
-
+    require_once  'models/model_usuarios.php';
+    $usuarios_model = new Usuario();
     $id = $_GET['id'];
-    $resultado  = $usuarios_model->obtener_usuario($id);
-    $nombre     = $resultado['primer_nombre'];
-    $fecha_nacimiento = $resultado['fecha_nacimiento'];
+    $res  = $usuarios_model->obtener_usuario($id);
+    $nombre     = $res['nombre_completo'];
+    $fecha_nacimiento = $res['fecha_nacimiento'];
     ?>
     <div class="container">
         <div class="container-fluid">
