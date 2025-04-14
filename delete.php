@@ -1,10 +1,8 @@
 <?php
+require_once  'views/index.php';
 
-include 'conexion.php';
 $id = $_GET['id'];
-
-$sql = "DELETE FROM aprendices WHERE id = $id";
-$resultado = mysqli_query($conexion, $sql);
+$resultado = $usuarios_model->eliminar_usuario($id);
 if ($resultado) {
     echo "<script>alert('Registro eliminado correctamente');</script>";
     echo "<script>window.location.href='index.php';</script>";
@@ -12,4 +10,3 @@ if ($resultado) {
     echo "<script>alert('Error al eliminar el registro');</script>";
     echo "<script>window.location.href='index.php';</script>";
 }
-mysqli_close($conexion);
